@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emojingo Redirect</title>
+  <script>
+    // Define your target URLs
+    const googlePlayUrl = "https://play.google.com/store/apps/details?id=earn.cash.with.ad.millionaire.maker.lottery.bet&referrer=utm_source%3Email%2BJacpot%26utm_medium%3Demail";
+    const appStoreUrl   = "https://apps.apple.com/us/app/emojingo-live-play-the-world/id6738431720";
+    const fallbackUrl   = "https://play.google.com/store/apps/details?id=earn.cash.with.ad.millionaire.maker.lottery.bet&referrer=utm_source%3Email%2BJacpot%26utm_medium%3Demail";
+
+    function redirectUser() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        window.location.href = googlePlayUrl;
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = appStoreUrl;
+      } else {
+        window.location.href = fallbackUrl;
+      }
+    }
+
+    window.onload = redirectUser;
+  </script>
+</head>
+<body>
+  <p>Redirecting you to the right store…</p>
+</body>
+</html>

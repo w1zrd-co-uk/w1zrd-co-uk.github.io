@@ -3,22 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App Redirect</title>
+  <title>Emojingo Redirect</title>
   <script>
-    // Define your target URLs
-    const googlePlayUrl = "https://play.google.com/store/apps/details?id=calorie.counter.tracker.photo.ai.no.subscriptions.cal&referrer=utm_source%3Dad%2Blottery%26utm_medium%3Dbanner";
-    const appStoreUrl   = "https://apps.apple.com/us/app/ai-calorie-counter-pic-freebie/id6751576577";
-    const fallbackUrl   = "https://w1zrd-co-uk.github.io";
+    // App configurations - map bundleid to app store URLs
+    const appConfigs = {
+      'emojingo': {
+            const googlePlayUrl = "https://play.google.com/store/apps/details?id=calorie.counter.tracker.photo.ai.no.subscriptions.cal&referrer=utm_source%3Dad%2Blottery%26utm_medium%3Dupdate",
+            const appStoreUrl   = "https://apps.apple.com/us/app/ai-calorie-counter-pic-freebie/id6751576577",
+            const fallbackUrl   = "https://w1zrd-co-uk.github.io";
+      },
+      
+       'emojingotask': {
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=task.emojingo.app&referrer=utm_source%3Dad%2Blottery%26utm_medium%3Dupdate",
+        appStoreUrl: "https://apps.apple.com/us/app/emojingo-live-play-the-world/id6738431720", //todo: update when app live
+        fallbackUrl: "https://emojingo.com"
+      }
+      // Add more apps here as needed
+      // 'anotherapp': {
+      //   googlePlayUrl: "...",
+      //   appStoreUrl: "...",
+      //   fallbackUrl: "..."
+      // }
+    };
+
+    // Default app configuration
+    const defaultApp = 'emojingo';
+
+    function getURLParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
 
     function redirectUser() {
+      // Get bundleid from URL parameter
+      const bundleId = getURLParameter('bundleid') || defaultApp;
+      
+      // Get app configuration
+      const config = appConfigs[bundleId] || appConfigs[defaultApp];
+      
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
       if (/android/i.test(userAgent)) {
-        window.location.href = googlePlayUrl;
+        window.location.href = config.googlePlayUrl;
       } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href = appStoreUrl;
+        window.location.href = config.appStoreUrl;
       } else {
-        window.location.href = fallbackUrl;
+        window.location.href = config.fallbackUrl;
       }
     }
 

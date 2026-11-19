@@ -1,5 +1,5 @@
 dc1ab
-
+facebook.com, 578361682602506, DIRECT, c3e20eee3f780d68
 applovin.com, 86fad9185eb207e70331c48f1055789b, DIRECT
 adyoulike.com, 2d578cf695c89ec2ba707280319d2020, RESELLER
 bidease.com, bidease_seller_26, RESELLER
